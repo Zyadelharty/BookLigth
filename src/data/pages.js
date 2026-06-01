@@ -2,7 +2,7 @@ export const DEFAULT_PAGES = [
   {
     id: 1,
     type: "cover",
-    title: "A Word of Thanks to the Nation's by the School Principal",
+    title: "A word of thanks from the school principal to the frontline heroes",
     subtitle: "A Story for Little Explorers",
     bg: "linear-gradient(135deg, #deddda, #ffffff)",
     textColor: "#000000",
@@ -29,7 +29,7 @@ export const DEFAULT_PAGES = [
   {
     id: 2,
     type: "content",
-    title: "A Word of Thanks to the Nation's by the Academic Advisor",
+    title: "A word of thanks from the academic advisor",
     text: "Deep inside a sparkling forest, a tiny rabbit named Luna discovered something truly wonderful — a glowing golden acorn that hummed like a song.",
     bg: "linear-gradient(135deg, #deddda, #ffffff)",
     textColor: "#000000",
@@ -60,8 +60,8 @@ export const DEFAULT_PAGES = [
   {
     id: 3,
     type: "content",
-    title: "The Wise Old Owl",
-    text: "Luna ran to find her friend Oliver the Owl, who lived in the tallest oak tree. 'What does it mean?' she asked, holding up the shiny acorn.",
+    title: "A message of thanks and appreciation from the students",
+    text: "",
     bg: "linear-gradient(135deg, #e3f2fd, #bbdefb)",
     textColor: "#161616",
     fontSize: 18,
@@ -94,7 +94,7 @@ export const DEFAULT_PAGES = [
   {
     id: 4,
     type: "content",
-    title: "The Map Appears!",
+
     text: "Oliver smiled wisely. 'That acorn is a key!' Suddenly a magical map unfolded from inside the acorn — showing a path to the Rainbow Waterfall.",
     bg: "linear-gradient(135deg, #fce4ec, #f8bbd0)",
     textColor: "#880e4f",
@@ -153,7 +153,6 @@ export const DEFAULT_PAGES = [
   {
     id: 5,
     type: "content",
-    title: "The Journey Begins",
     text: "Luna and Oliver packed a tiny backpack with berries and honey. Together they hopped and flew through the shimmering trees, following the golden path.",
     bg: "linear-gradient(135deg, #fff8e1, #ffecb3)",
     textColor: "#e65100",
@@ -326,7 +325,6 @@ export const DEFAULT_PAGES = [
   {
   id: 8,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #949090)",
     textColor: "#000000",
@@ -382,7 +380,6 @@ export const DEFAULT_PAGES = [
   {
   id: 9,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #ffffff)",
     textColor: "#000000",
@@ -438,7 +435,6 @@ export const DEFAULT_PAGES = [
    {
   id: 10,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f0e40ad2)",
     textColor: "#000000",
@@ -494,7 +490,6 @@ export const DEFAULT_PAGES = [
      {
   id: 11,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f0620ad2)",
     textColor: "#000000",
@@ -550,7 +545,6 @@ export const DEFAULT_PAGES = [
      {
   id: 12,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #0addf0d2)",
     textColor: "#000000",
@@ -606,7 +600,6 @@ export const DEFAULT_PAGES = [
     {
   id: 13,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #525251)",
     textColor: "#000000",
@@ -668,7 +661,6 @@ export const DEFAULT_PAGES = [
       {
   id: 14,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #0addf0d2)",
     textColor: "#000000",
@@ -724,7 +716,6 @@ export const DEFAULT_PAGES = [
         {
   id: 15,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f00a19d2)",
     textColor: "#000000",
@@ -780,7 +771,6 @@ export const DEFAULT_PAGES = [
     {
   id: 16,
     type: "content",
-    title: "To the brave men and women of the UAE Armed Forces",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f0b30ad2)",
     textColor: "#000000",
@@ -888,7 +878,6 @@ export const DEFAULT_PAGES = [
       {
   id: 18,
     type: "content",
-    title: "",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #525251)",
     textColor: "#000000",
@@ -944,7 +933,6 @@ export const DEFAULT_PAGES = [
         {
   id: 19,
     type: "content",
-    title: "",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #edb05b)",
     textColor: "#000000",
@@ -1000,7 +988,6 @@ export const DEFAULT_PAGES = [
           {
   id: 20,
     type: "content",
-    title: "",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #000b5d)",
     textColor: "#000000",
@@ -1056,7 +1043,6 @@ export const DEFAULT_PAGES = [
     {
   id: 21,
     type: "content",
-    title: "",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #ceb539)",
     textColor: "#000000",
@@ -1172,7 +1158,6 @@ export const DEFAULT_PAGES = [
    {
   id: 23,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #09921e)",
     textColor: "#000000",
@@ -1232,7 +1217,6 @@ export const DEFAULT_PAGES = [
      {
   id: 24,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cdca)",
     textColor: "#000000",
@@ -1288,7 +1272,6 @@ export const DEFAULT_PAGES = [
        {
   id: 25,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cdca)",
     textColor: "#000000",
@@ -1347,7 +1330,6 @@ export const DEFAULT_PAGES = [
      {
   id: 26,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #cda813)",
     textColor: "#000000",
@@ -1403,7 +1385,6 @@ export const DEFAULT_PAGES = [
      {
   id: 27,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #cda813)",
     textColor: "#000000",
@@ -1526,7 +1507,6 @@ export const DEFAULT_PAGES = [
       {
   id: 29,
     type: "content",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cd1c)",
     textColor: "#000000",
@@ -1582,7 +1562,6 @@ export const DEFAULT_PAGES = [
    {
   id: 30,
     type: "cover",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cd1c)",
     textColor: "#000000",
@@ -1638,7 +1617,6 @@ export const DEFAULT_PAGES = [
      {
   id: 31,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cd1c)",
     textColor: "#000000",
@@ -1694,7 +1672,6 @@ export const DEFAULT_PAGES = [
        {
   id: 32,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #13cd1c)",
     textColor: "#000000",
@@ -1750,7 +1727,6 @@ export const DEFAULT_PAGES = [
          {
   id: 33,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #b9e11a)",
     textColor: "#000000",
@@ -1806,7 +1782,6 @@ export const DEFAULT_PAGES = [
        {
   id: 34,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f1463a)",
     textColor: "#000000",
@@ -1863,7 +1838,6 @@ export const DEFAULT_PAGES = [
         {
   id: 35,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #f13aab)",
     textColor: "#000000",
@@ -1919,7 +1893,6 @@ export const DEFAULT_PAGES = [
      {
   id: 36,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #787778)",
     textColor: "#000000",
@@ -1975,7 +1948,6 @@ export const DEFAULT_PAGES = [
    {
   id: 37,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #787778)",
     textColor: "#000000",
@@ -2031,7 +2003,6 @@ export const DEFAULT_PAGES = [
    {
   id: 38,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #dcf216)",
     textColor: "#000000",
@@ -2087,7 +2058,6 @@ export const DEFAULT_PAGES = [
      {
   id: 39,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #16f22c)",
     textColor: "#000000",
@@ -2143,7 +2113,6 @@ export const DEFAULT_PAGES = [
   {
   id: 40,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #16f22c)",
     textColor: "#000000",
@@ -2199,7 +2168,6 @@ export const DEFAULT_PAGES = [
   {
   id: 41,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #ffffff)",
     textColor: "#000000",
@@ -2255,7 +2223,6 @@ export const DEFAULT_PAGES = [
    {
   id: 42,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #00bea8)",
     textColor: "#000000",
@@ -2311,7 +2278,6 @@ export const DEFAULT_PAGES = [
      {
   id: 43,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #00be7f)",
     textColor: "#000000",
@@ -2368,7 +2334,6 @@ export const DEFAULT_PAGES = [
        {
   id: 44,
     type: "cotent",
-    title: "A Message to the Frontline Heroes",
     text: "Hi",
     bg: "linear-gradient(135deg, #deddda, #004fbe)",
     textColor: "#000000",

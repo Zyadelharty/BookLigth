@@ -11,6 +11,7 @@ import KeyboardNav from "./components/KeyboardNav.jsx";
 import LoginScreen from "./components/LoginScreen.jsx";
 import AdminPanel from "./components/AdminPanel.jsx";
 
+
 function useBookDimensions() {
   const [dim, setDim] = useState({ w: 1400, h: 1000, portrait: false });
 
@@ -22,7 +23,6 @@ function useBookDimensions() {
       const targetHeight = Math.floor(vh * 0.97);
 
       if (portrait) {
-        // Single-page mode — fill the full horizontal space
         let w = Math.floor(vw);
         let h = Math.floor(w / 0.72);
         if (h > targetHeight) {
@@ -31,14 +31,12 @@ function useBookDimensions() {
         }
         setDim({ w, h, portrait: true });
       } else {
-       
         let w = Math.floor(vw / 2);
         let h = Math.floor(w / 0.75);
         if (h > targetHeight) {
           h = targetHeight;
           w = Math.floor(h * 0.98);
         }
-        // No artificial minimum that would cause overflow
         w = Math.max(w, 300);
         h = Math.max(h, 400);
         setDim({ w, h, portrait: false });
@@ -207,38 +205,33 @@ function TableOfContentsPage({ pages, pageW, pageH, onGoToPage }) {
         flexDirection: "column",
         gap: "16px",
       }}>
-        {pages.map((page, idx) => (
-          <button
-            key={page.id}
-            onClick={() => onGoToPage(idx)}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "15px 20px",
-              background: "linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)",
-              border: "none",
-              borderRadius: "16px",
-              cursor: "pointer",
-              transition: "transform 0.2s, box-shadow 0.2s",
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: `${Math.min(pageW * 0.04, 18)}px`,
-              fontWeight: 700,
-              color: "#4c1d95",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateX(10px)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(76, 29, 149, 0.25)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateX(0)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            <span>{page.title || `Page ${idx + 1}`}</span>
-            <span style={{ fontSize: "18px", opacity: 0.7 }}>→</span>
-          </button>
-        ))}
+{pages
+  .map((page, originalIndex) => ({ page, originalIndex }))
+  .filter(item => item.page.title && item.page.title.trim() !== "")
+  .map(({ page, originalIndex }) => (
+    <button
+      key={page.id}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "15px 20px",
+        background: "linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%)",
+        border: "none",
+        borderRadius: "16px",
+        cursor: "pointer",
+        transition: "transform 0.2s, box-shadow 0.2s",
+        fontFamily: "'Nunito', sans-serif",
+        fontSize: `${Math.min(pageW * 0.04, 18)}px`,
+        fontWeight: 700,
+        color: "#4c1d95",
+      }}
+    
+    >
+      <span>{page.title}</span>
+      <span style={{ fontSize: "18px", opacity: 0.7 }}></span>
+    </button>
+  ))}
       </div>
     </div>
   );
@@ -305,6 +298,18 @@ function NavArrow({ direction, onClick, disabled }) {
   );
 }
 
+// Helper: decide if a page has meaningful content worth indexing
+function pageHasValue(page) {
+  if (!page) return false;
+  if (page.isCover || page.isTOC) return false;
+  const hasTitle = page.title && page.title.trim().length > 0;
+  const hasText = page.text && page.text.trim().length > 0;
+  const hasFacts = page.reference?.facts?.length > 0;
+  const hasSubtitle = page.subtitle && page.subtitle.trim().length > 0;
+  const hasImage = page.image && page.image.trim().length > 0;
+  return hasTitle || hasText || hasFacts || hasSubtitle || hasImage;
+}
+
 export default function App() {
   const [pages, setPages] = useState(DEFAULT_PAGES);
   const [currentPage, setCurrentPage] = useState(0);
@@ -316,6 +321,10 @@ export default function App() {
   const [bookKey, setBookKey] = useState(0);
   const flipRef = useRef(null);
   const { w: pageW, h: pageH, portrait } = useBookDimensions();
+
+  // Used to suppress onFlip updates during programmatic navigation
+  const isNavigatingRef = useRef(false);
+  const navigateTimeoutRef = useRef(null);
 
   // Book structure: Front Cover -> Table of Contents -> Content Pages -> End Cover
   const bookPages = [
@@ -335,7 +344,16 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (navigateTimeoutRef.current) clearTimeout(navigateTimeoutRef.current);
+    };
+  }, []);
+
   const onPage = useCallback((e) => {
+    // If we're in a programmatic navigation, ignore spurious onFlip callbacks
+    if (isNavigatingRef.current) return;
     setCurrentPage(e.data);
     setShowRef(false);
   }, []);
@@ -352,27 +370,40 @@ export default function App() {
     }
   };
 
-  const goToPage = (pageIndex) => {
-    const targetPage = pageIndex + 2;
-    if (flipRef.current && targetPage >= 0 && targetPage < totalPages) {
-      flipRef.current.pageFlip().flip(targetPage);
-      setCurrentPage(targetPage);
-      setShowIndex(false);
-    }
-  };
+  const goToPage = useCallback((pageIndex) => {
+    console.log(pageIndex)
+    // +2 accounts for front cover (0) and TOC (1)
+    const targetFlipPage = pageIndex;
+    console.log(targetFlipPage)
+    if (targetFlipPage < 0 || targetFlipPage >= totalPages) return;
 
-  const getPageDisplayText = () => {
-    if (currentPage === 0) return "📖 Front Cover";
-    if (currentPage === 1) return "📚 Table of Contents";
-    if (currentPage === totalPages - 1) return "📘 Back Cover - Book Closed";
-    return `📄 Page ${currentPage - 1} of ${totalPages - 3}`;
-  };
+    setShowIndex(false);
+
+    isNavigatingRef.current = true;
+
+    if (navigateTimeoutRef.current) clearTimeout(navigateTimeoutRef.current);
+    navigateTimeoutRef.current = setTimeout(() => {
+      if (flipRef.current) {
+        flipRef.current.pageFlip().flip(targetFlipPage);
+        // Update currentPage ourselves so the indicator is correct
+        setCurrentPage(targetFlipPage);
+      }
+      navigateTimeoutRef.current = setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 700); // slightly longer than flippingTime (600ms)
+    }, 50);
+  }, [totalPages]);
+
+
 
   const isSinglePageMode = portrait;
-
-  // In desktop mode: two pages each = vw/2, so together = exactly 100vw
-  // In portrait mode: single page = 100vw (or height-constrained)
   const bookSpreadW = isSinglePageMode ? pageW : pageW * 2;
+
+  // Pages with meaningful content only — for the index
+  const indexablePages = pages
+    .filter(p => !p.isCover)
+    .map((page, idx) => ({ page, originalIdx: idx }))
+    .filter(({ page }) => pageHasValue(page));
 
   return (
     <div
@@ -452,7 +483,7 @@ export default function App() {
         </div>
       ))}
 
-      {/* Book wrapper — spans full viewport width */}
+      {/* Book wrapper */}
       <div
         style={{
           width: bookSpreadW,
@@ -510,8 +541,8 @@ export default function App() {
               ) : (
                 <BookPage
                   page={item}
-                  pageNum={idx - 1}
-                  total={totalPages - 2}
+                  pageNum={idx + 1}
+                  total={totalPages}
                   pageW={pageW}
                   pageH={pageH}
                   onShowRef={item.reference ? () => setShowRef(true) : null}
@@ -538,9 +569,14 @@ export default function App() {
       {/* Modals */}
       {showIndex && (
         <BookIndex
-          pages={pages}
+          pages={indexablePages.map(({ page }) => page)}
           currentPage={currentPage - 2}
-          onGoTo={(pageIdx) => goToPage(pageIdx)}
+          onGoTo={(pageIdx) => {
+            // pageIdx here is the index within indexablePages
+            // We need to map it back to the original page index
+            const originalIdx = indexablePages[pageIdx]?.originalIdx ?? pageIdx;
+            goToPage(originalIdx);
+          }}
           onClose={() => setShowIndex(false)}
         />
       )}
